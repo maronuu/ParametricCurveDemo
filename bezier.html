@@ -199,7 +199,23 @@
         <li>Alt+Drag: Camera Pan</li>
         <li>Alt+Shift+drag: Camera Zoom</li>
     </ul>
-
+    <h3>実装の説明</h3>
+    <div>
+        2次ベジェ曲線を実装した。eval_quaratic_bezier関数の中身を、定義式に従って実装した。
+    </div>
+    <h3>考察</h3>
+    <div>
+        p0, p1に漸近するt=0, 1と、その中間あたりt=0.5への遷移がうまく表現できている。特にp1の制御点を曲線が通らないという特徴が表れている。
+    </div>
+    <h3>感想</h3>
+    <div>
+        WebGLでデモを実装することで、bezier-curve及びcatmull-rome-splineへの理解が深まり、数式の気持ちが分かった。
+        式を追うだけでなく、実装して、なおかつユーザが手軽にいじれるDemoを作ることの意義がわかった。
+        パラメトリック曲線の章は全体的に面白かった。
+        実装までは時間がなく取り組めなかったが、C2-interpolation,
+        kappa-curveなどの最新の論文も軽く参照してみた。
+        これらの論文は数学的なInsightが優れていて、なおかつそれが役に立つ形で示されていて非常に面白かった。
+    </div>
     <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
     <script src="https://button.glitch.me/button.js"></script>
 </body>

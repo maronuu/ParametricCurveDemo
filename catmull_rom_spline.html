@@ -34,10 +34,22 @@
                 var t2 = ts[seg_idx + 1];
                 var t3 = ts[seg_idx + 2];
 
-                var p12 = vec2.scaleAndAdd_ip(vec2.scale([], p1, (t2 - t) / (t2 - t1)), p2, (t - t1) / (t2 - t1));
-                var p23 = vec2.scaleAndAdd_ip(vec2.scale([], p2, (t3 - t) / (t3 - t2)), p3, (t - t2) / (t3 - t2));
+                var p12 = vec2.scaleAndAdd_ip(
+                    vec2.scale([], p1, (t2 - t) / (t2 - t1)),
+                    p2,
+                    (t - t1) / (t2 - t1)
+                );
+                var p23 = vec2.scaleAndAdd_ip(
+                    vec2.scale([], p2, (t3 - t) / (t3 - t2)),
+                    p3,
+                    (t - t2) / (t3 - t2)
+                );
 
-                var p123 = vec2.scaleAndAdd_ip(vec2.scale([], p12, (t3 - t) / (t3 - t1)), p23, (t - t1) / (t3 - t1));
+                var p123 = vec2.scaleAndAdd_ip(
+                    vec2.scale([], p12, (t3 - t) / (t3 - t1)),
+                    p23,
+                    (t - t1) / (t3 - t1)
+                );
 
                 return p123;
             }
@@ -49,10 +61,22 @@
                 var t1 = ts[seg_idx];
                 var t2 = ts[seg_idx + 1];
 
-                var p01 = vec2.scaleAndAdd_ip(vec2.scale([], p0, (t1 - t) / (t1 - t0)), p1, (t - t0) / (t1 - t0));
-                var p12 = vec2.scaleAndAdd_ip(vec2.scale([], p1, (t2 - t) / (t2 - t1)), p2, (t - t1) / (t2 - t1));
+                var p01 = vec2.scaleAndAdd_ip(
+                    vec2.scale([], p0, (t1 - t) / (t1 - t0)),
+                    p1,
+                    (t - t0) / (t1 - t0)
+                );
+                var p12 = vec2.scaleAndAdd_ip(
+                    vec2.scale([], p1, (t2 - t) / (t2 - t1)),
+                    p2,
+                    (t - t1) / (t2 - t1)
+                );
 
-                var p012 = vec2.scaleAndAdd_ip(vec2.scale([], p01, (t2 - t) / (t2 - t0)), p12, (t - t0) / (t2 - t0));
+                var p012 = vec2.scaleAndAdd_ip(
+                    vec2.scale([], p01, (t2 - t) / (t2 - t0)),
+                    p12,
+                    (t - t0) / (t2 - t0)
+                );
 
                 return p012;
             }
@@ -65,14 +89,38 @@
             var t2 = ts[seg_idx + 1];
             var t3 = ts[seg_idx + 2];
 
-            var p01 = vec2.scaleAndAdd_ip(vec2.scale([], p0, (t1 - t) / (t1 - t0)), p1, (t - t0) / (t1 - t0));
-            var p12 = vec2.scaleAndAdd_ip(vec2.scale([], p1, (t2 - t) / (t2 - t1)), p2, (t - t1) / (t2 - t1));
-            var p23 = vec2.scaleAndAdd_ip(vec2.scale([], p2, (t3 - t) / (t3 - t2)), p3, (t - t2) / (t3 - t2));
+            var p01 = vec2.scaleAndAdd_ip(
+                vec2.scale([], p0, (t1 - t) / (t1 - t0)),
+                p1,
+                (t - t0) / (t1 - t0)
+            );
+            var p12 = vec2.scaleAndAdd_ip(
+                vec2.scale([], p1, (t2 - t) / (t2 - t1)),
+                p2,
+                (t - t1) / (t2 - t1)
+            );
+            var p23 = vec2.scaleAndAdd_ip(
+                vec2.scale([], p2, (t3 - t) / (t3 - t2)),
+                p3,
+                (t - t2) / (t3 - t2)
+            );
 
-            var p012 = vec2.scaleAndAdd_ip(vec2.scale([], p01, (t2 - t) / (t2 - t0)), p12, (t - t0) / (t2 - t0));
-            var p123 = vec2.scaleAndAdd_ip(vec2.scale([], p12, (t3 - t) / (t3 - t1)), p23, (t - t1) / (t3 - t1));
+            var p012 = vec2.scaleAndAdd_ip(
+                vec2.scale([], p01, (t2 - t) / (t2 - t0)),
+                p12,
+                (t - t0) / (t2 - t0)
+            );
+            var p123 = vec2.scaleAndAdd_ip(
+                vec2.scale([], p12, (t3 - t) / (t3 - t1)),
+                p23,
+                (t - t1) / (t3 - t1)
+            );
 
-            var p0123 = vec2.scaleAndAdd_ip(vec2.scale([], p012, (t2 - t) / (t2 - t1)), p123, (t - t1) / (t2 - t1));
+            var p0123 = vec2.scaleAndAdd_ip(
+                vec2.scale([], p012, (t2 - t) / (t2 - t1)),
+                p123,
+                (t - t1) / (t2 - t1)
+            );
 
             return p0123;
         }
@@ -107,7 +155,13 @@
         function draw() {
             gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
             // projection & camera position
-            mat4.perspective(legacygl.uniforms.projection.value, Math.PI / 6, canvas.aspect_ratio(), 0.1, 1000);
+            mat4.perspective(
+                legacygl.uniforms.projection.value,
+                Math.PI / 6,
+                canvas.aspect_ratio(),
+                0.1,
+                1000
+            );
             var modelview = legacygl.uniforms.modelview;
             camera.lookAt(modelview.value);
 
@@ -128,7 +182,9 @@
             for (var i = 1; i <= numknots - 3; ++i) {
                 // segment i
                 for (var j = 0; j <= numsteps; ++j) {
-                    var t = knots_uniform[i] + j * (knots_uniform[i + 1] - knots_uniform[i]) / numsteps;
+                    var t =
+                        knots_uniform[i] +
+                        (j * (knots_uniform[i + 1] - knots_uniform[i])) / numsteps;
                     console.log("t = ", t);
                     legacygl.vertex2(eval_catmull_rom_spline(ps, t, knots_uniform, i));
                 }
@@ -139,8 +195,12 @@
                 for (var i = 1; i <= numknots - 3; ++i) {
                     // segment i
                     for (var j = 0; j <= numsteps; ++j) {
-                        var t = knots_uniform[i] + j * (knots_uniform[i + 1] - knots_uniform[i]) / numsteps;
-                        legacygl.vertex2(eval_catmull_rom_spline(ps, t, knots_uniform, i));
+                        var t =
+                            knots_uniform[i] +
+                            (j * (knots_uniform[i + 1] - knots_uniform[i])) / numsteps;
+                        legacygl.vertex2(
+                            eval_catmull_rom_spline(ps, t, knots_uniform, i)
+                        );
                     }
                 }
                 legacygl.end();
@@ -152,7 +212,9 @@
             for (var i = 1; i <= numknots - 3; ++i) {
                 // segment i
                 for (var j = 0; j <= numsteps; ++j) {
-                    var t = knots_chordal[i] + j * (knots_chordal[i + 1] - knots_chordal[i]) / numsteps;
+                    var t =
+                        knots_chordal[i] +
+                        (j * (knots_chordal[i + 1] - knots_chordal[i])) / numsteps;
                     legacygl.vertex2(eval_catmull_rom_spline(ps, t, knots_chordal, i));
                 }
             }
@@ -162,8 +224,12 @@
                 for (var i = 1; i <= numknots - 3; ++i) {
                     // segment i
                     for (var j = 0; j <= numsteps; ++j) {
-                        var t = knots_chordal[i] + j * (knots_chordal[i + 1] - knots_chordal[i]) / numsteps;
-                        legacygl.vertex2(eval_catmull_rom_spline(ps, t, knots_chordal, i));
+                        var t =
+                            knots_chordal[i] +
+                            (j * (knots_chordal[i + 1] - knots_chordal[i])) / numsteps;
+                        legacygl.vertex2(
+                            eval_catmull_rom_spline(ps, t, knots_chordal, i)
+                        );
                     }
                 }
                 legacygl.end();
@@ -175,8 +241,13 @@
             for (var i = 1; i <= numknots - 3; ++i) {
                 // segment i
                 for (var j = 0; j <= numsteps; ++j) {
-                    var t = knots_centripetal[i] + j * (knots_centripetal[i + 1] - knots_centripetal[i]) / numsteps;
-                    legacygl.vertex2(eval_catmull_rom_spline(ps, t, knots_centripetal, i));
+                    var t =
+                        knots_centripetal[i] +
+                        (j * (knots_centripetal[i + 1] - knots_centripetal[i])) /
+                        numsteps;
+                    legacygl.vertex2(
+                        eval_catmull_rom_spline(ps, t, knots_centripetal, i)
+                    );
                 }
             }
             legacygl.end();
@@ -185,13 +256,18 @@
                 for (var i = 1; i <= numknots - 3; ++i) {
                     // segment i
                     for (var j = 0; j <= numsteps; ++j) {
-                        var t = knots_centripetal[i] + j * (knots_centripetal[i + 1] - knots_centripetal[i]) / numsteps;
-                        legacygl.vertex2(eval_catmull_rom_spline(ps, t, knots_centripetal, i));
+                        var t =
+                            knots_centripetal[i] +
+                            (j * (knots_centripetal[i + 1] - knots_centripetal[i])) /
+                            numsteps;
+                        legacygl.vertex2(
+                            eval_catmull_rom_spline(ps, t, knots_centripetal, i)
+                        );
                     }
                 }
                 legacygl.end();
             }
-            
+
             // draw control points
             if (document.getElementById("input_show_controlpoints").checked) {
                 legacygl.color(0.0, 0.0, 0.0);
@@ -212,14 +288,14 @@
                 legacygl.vertex2(p5);
                 legacygl.end();
             }
-        };
+        }
         function init() {
             // OpenGL context
             canvas = document.getElementById("canvas");
             gl = canvas.getContext("experimental-webgl");
-            if (!gl)
-                alert("Could not initialise WebGL, sorry :-(");
-            var vertex_shader_src = "\
+            if (!gl) alert("Could not initialise WebGL, sorry :-(");
+            var vertex_shader_src =
+                "\
         attribute vec3 a_vertex;\
         attribute vec3 a_color;\
         varying vec3 v_color;\
@@ -231,7 +307,8 @@
             gl_PointSize = 5.0;\
         }\
         ";
-            var fragment_shader_src = "\
+            var fragment_shader_src =
+                "\
         precision mediump float;\
         varying vec3 v_color;\
         void main(void) {\
@@ -266,10 +343,12 @@
                 var viewport = [0, 0, canvas.width, canvas.height];
                 var dist_min = 10000000;
                 for (var i = 0; i < points.length; ++i) {
-                    var object_win = glu.project([points[i][0], points[i][1], 0],
+                    var object_win = glu.project(
+                        [points[i][0], points[i][1], 0],
                         legacygl.uniforms.modelview.value,
                         legacygl.uniforms.projection.value,
-                        viewport);
+                        viewport
+                    );
                     var dist = vec2.dist(mouse_win, object_win);
                     if (dist < dist_min) {
                         dist_min = dist;
@@ -287,10 +366,12 @@
                 if (selected != null) {
                     var viewport = [0, 0, canvas.width, canvas.height];
                     mouse_win.push(1);
-                    var mouse_obj = glu.unproject(mouse_win,
+                    var mouse_obj = glu.unproject(
+                        mouse_win,
                         legacygl.uniforms.modelview.value,
                         legacygl.uniforms.projection.value,
-                        viewport);
+                        viewport
+                    );
                     // just reuse the same code as the 3D case
                     var plane_origin = [0, 0, 0];
                     var plane_normal = [0, 0, 1];
@@ -302,7 +383,7 @@
                     vec3.add(selected, camera.eye, eye_to_intersection);
                     draw();
                 }
-            }
+            };
             document.onmouseup = function (evt) {
                 if (camera.is_moving()) {
                     camera.finish_moving();
@@ -313,28 +394,35 @@
             // init OpenGL settings
             gl.viewport(0, 0, canvas.width, canvas.height);
             gl.clearColor(1, 1, 1, 1);
-        };
+        }
     </script>
 </head>
 
 <body onload="init(); draw();">
     <h2>
-        <script type="text/javascript">document.write(document.getElementById("title").innerHTML);</script>
+        <script type="text/javascript">
+            document.write(document.getElementById("title").innerHTML);
+        </script>
     </h2>
-    <canvas id="canvas" width="640" height="480" style="border:1px solid #000000"></canvas>
+    <canvas id="canvas" width="640" height="480" style="border: 1px solid #000000"></canvas>
     <table>
         <tr>
             <td>Number of Steps per Segment:</td>
-            <td colspan="2"><input type="number" id="input_numsteps" onchange="draw();" step="1" min="2" value="10">
+            <td colspan="2">
+                <input type="number" id="input_numsteps" onchange="draw();" step="1" min="2" value="10" />
             </td>
         </tr>
         <tr>
             <td>Show Control Points:</td>
-            <td colspan="2"><input type="checkbox" id="input_show_controlpoints" onchange="draw();" checked></td>
+            <td colspan="2">
+                <input type="checkbox" id="input_show_controlpoints" onchange="draw();" checked />
+            </td>
         </tr>
         <tr>
             <td>Show Sample Points:</td>
-            <td colspan="2"><input type="checkbox" id="input_show_samplepoints" onchange="draw();" checked></td>
+            <td colspan="2">
+                <input type="checkbox" id="input_show_samplepoints" onchange="draw();" checked />
+            </td>
         </tr>
     </table>
     <h3>Usage:</h3>
@@ -345,12 +433,34 @@
     </ul>
     <h3>Color:</h3>
     <ul>
-        <li style="color:#005500">Green Line: Uniform Knots</li>
-        <li style="color:red">Red Line: Chordal Knots</li>
-        <li style="color:blue">Blue Line: Centripetal Knots</li>
+        <li style="color: #005500">Green Line: Uniform Knots</li>
+        <li style="color: red">Red Line: Chordal Knots</li>
+        <li style="color: blue">Blue Line: Centripetal Knots</li>
     </ul>
-
-    <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
+    <h3>実装の説明</h3>
+    <div>
+        3次Catmull-Romスプライン曲線を、異なる3つのKnot列の求め方(Uniform,
+        Chordal, Centripetal)で描画した。色とKnot列の対応は上記の通りである。<br />
+        knot間の区間をセグメントと呼ぶことにすると、そのセグメントの中を一様にユーザが指定したStep数で区切り、折線で描画した。これは二次ベジェ曲線の実装と同様の方針である。
+        <br />
+    </div>
+    <h3>考察</h3>
+    <div>
+        近い2制御点に挟まれたセグメント、遠い2制御点に挟まれたセグメントにおける挙動が異なった。<br />
+        Uniformでは前者に近づくほど制御点から離れて膨れていく傾向にあり、後者に近づくほど制御点に近づく。Uniformでは特に右下の2点を極度に近づけると自己交差を生じた。<br />
+        Chordalは円弧により近いような曲線になった。前者のセグメントほど制御点に近づき、後者のセグメントほど膨れる。<br />
+        Centripetalはその中間のような特性を示した。<br />
+    </div>
+    <h3>感想</h3>
+    <div>
+        WebGLでデモを実装することで、bezier-curve及びcatmull-rome-splineへの理解が深まり、数式の気持ちが分かった。
+        式を追うだけでなく、実装して、なおかつユーザが手軽にいじれるDemoを作ることの意義がわかった。
+        パラメトリック曲線の章は全体的に面白かった。
+        実装までは時間がなく取り組めなかったが、C2-interpolation,
+        kappa-curveなどの最新の論文も軽く参照してみた。
+        これらの論文は数学的なInsightが優れていて、なおかつそれが役に立つ形で示されていて非常に面白かった。
+    </div>
+    <div class="glitchButton" style="position: fixed; top: 20px; right: 20px"></div>
     <script src="https://button.glitch.me/button.js"></script>
 </body>
 
